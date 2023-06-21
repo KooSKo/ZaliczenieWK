@@ -66,26 +66,26 @@ class CarDatabase {
 
     private static void addCar() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj markę samochodu:");
+        System.out.println("Podaj markę samochodu:");  // Przyjmuje markę samochodu od użytkownika.
         String brand = scanner.nextLine();
-        System.out.println("Podaj model samochodu:");
+        System.out.println("Podaj model samochodu:");  // Przyjmuje model samochodu od użytkownika.
         String model = scanner.nextLine();
-        System.out.println("Podaj rok produkcji samochodu:");
+        System.out.println("Podaj rok produkcji samochodu:");  // Przyjmuje rok produkcji samochodu od użytkownika.
         int year = scanner.nextInt();
-        System.out.println("Podaj przebieg samochodu:");
+        System.out.println("Podaj przebieg samochodu:");  // Przyjmuje przebieg samochodu od użytkownika.
         int mileage = scanner.nextInt();
-        System.out.println("Podaj cenę samochodu:");
+        System.out.println("Podaj cenę samochodu:");  // Przyjmuje cenę samochodu od użytkownika.
         double price = scanner.nextDouble();
 
-        Car car = new Car(brand, model, year, mileage, price);
+        Car car = new Car(brand, model, year, mileage, price);  // Tworzy nowy obiekt klasy Car na podstawie wprowadzonych danych.
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE, true))) {
-            writer.write(car.toString());
+            writer.write(car.toString());  // Zapisuje dane samochodu do pliku bazy danych.
             writer.newLine();
 
-            System.out.println("Samochód został dodany do bazy danych.");
+            System.out.println("Samochód został dodany do bazy danych.");  // Wyświetla komunikat potwierdzający dodanie samochodu.
         } catch (IOException e) {
-            System.err.println("Błąd zapisu do bazy danych: " + e.getMessage());
+            System.err.println("Błąd zapisu do bazy danych: " + e.getMessage());  // Wyświetla błąd zapisu do bazy danych w przypadku wystąpienia wyjątku IOException.
         }
     }
 
@@ -94,16 +94,16 @@ class CarDatabase {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                System.out.println(line);  // Wyświetla każdą linię (dane samochodu) z pliku bazy danych.
             }
         } catch (IOException e) {
-            System.err.println("Błąd odczytu bazy danych: " + e.getMessage());
+            System.err.println("Błąd odczytu bazy danych: " + e.getMessage());  // Wyświetla błąd odczytu bazy danych w przypadku wystąpienia wyjątku IOException.
         }
     }
 
     private static void searchCars() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj markę samochodu do wyszukania:");
+        System.out.println("Podaj markę samochodu do wyszukania:");  // Przyjmuje markę samochodu do wyszukania od użytkownika.
         String searchTerm = scanner.nextLine();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(DATABASE_FILE))) {
@@ -111,17 +111,17 @@ class CarDatabase {
             boolean found = false;
 
             while ((line = reader.readLine()) != null) {
-                if (line.contains(searchTerm)) {
-                    System.out.println(line);
+                if (line.contains(searchTerm)) {  // Sprawdza, czy linia zawiera podany przez użytkownika termin wyszukiwania.
+                    System.out.println(line);  // Wyświetla linię (dane samochodu), jeśli zawiera podaną markę samochodu.
                     found = true;
                 }
             }
 
             if (!found) {
-                System.out.println("Nie znaleziono samochodu o podanej marce.");
+                System.out.println("Nie znaleziono samochodu o podanej marce.");  // Wyświetla komunikat informujący, że nie znaleziono samochodu o podanej marce.
             }
         } catch (IOException e) {
-            System.err.println("Błąd odczytu bazy danych: " + e.getMessage());
+            System.err.println("Błąd odczytu bazy danych: " + e.getMessage());  // Wyświetla błąd odczytu bazy danych w przypadku wystąpienia wyjątku IOException.
         }
     }
 }
